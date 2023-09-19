@@ -6,7 +6,7 @@ fun main(args: Array<String>) {
     val defaultPath = System.getProperty("user.dir")
     val rootPath = File(defaultPath).parentFile
 
-    val readMe = File("$rootPath/README.md")
+    val readMe = File("/home/runner/work/github-action-test-lab/github-action-test-lab/README.md")
 
     val content = StringBuilder()
     content.appendLine(readMe.readText())
