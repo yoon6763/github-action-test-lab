@@ -13,9 +13,12 @@ fun main(args: Array<String>) {
 
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
-    val now = Calendar.getInstance().time
+    val now = Calendar.getInstance()
 
-    content.appendLine("updated at ${simpleDateFormat.format(now)} - GitHub Actions")
+    // 한국 시각으로 변경
+    now.add(Calendar.HOUR, 9)
+    
+    content.appendLine("updated at ${simpleDateFormat.format(now.timeInMillis)} - GitHub Actions")
 
     readMe.writeText(content.toString())
 }
