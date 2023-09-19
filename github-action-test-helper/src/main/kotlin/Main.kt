@@ -3,9 +3,10 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 
 fun main(args: Array<String>) {
-    val defaultPath = File(".").absoluteFile.parentFile.parentFile.absolutePath
+    val defaultPath = System.getProperty("user.dir")
+    val rootPath = File(defaultPath).parentFile
 
-    val readMe = File("$defaultPath/README.md")
+    val readMe = File("$rootPath/README.md")
 
     val content = StringBuilder()
     content.appendLine(readMe.readText())
