@@ -1,42 +1,20 @@
-import java.io.BufferedWriter
 import java.io.File
-import java.io.FileWriter
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 fun main(args: Array<String>) {
-    val defaultPath = File(".").absoluteFile.parentFile
+    val defaultPath = File(".").absoluteFile.parentFile.parentFile.absolutePath
 
-    println(defaultPath)
+    val readMe = File("$defaultPath/README.md")
 
-    val randomFileName = "text_${System.currentTimeMillis()}.txt"
+    val content = StringBuilder()
+    content.appendLine(readMe.readText())
 
-    val randomTextFile = File(defaultPath, randomFileName)
+    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
-    val randomTextFileBufferedWriter = BufferedWriter(FileWriter(randomTextFile))
-    randomTextFileBufferedWriter.write("Hello World")
-    randomTextFileBufferedWriter.write("테스트 파일")
-    randomTextFileBufferedWriter.newLine()
+    val now = Calendar.getInstance().time
 
-    randomTextFileBufferedWriter.close()
+    content.appendLine("updated at ${simpleDateFormat.format(now)} - GitHub Actions")
 
-
-//    val textFile = File(defaultPath, "text.txt")
-//
-//
-//    val textFileBufferedReader = textFile.bufferedReader()
-//    var version = textFileBufferedReader.readLine().toInt()
-//    version++
-//
-//
-//    val textFileBufferedWriter = BufferedWriter(FileWriter(textFile))
-//    textFileBufferedWriter.write(version.toString())
-//    textFileBufferedWriter.newLine()
-//
-//
-//    textFileBufferedWriter.write("Hello World")
-//    textFileBufferedWriter.newLine()
-//
-//    textFileBufferedWriter.write("테스트 파일")
-//    textFileBufferedWriter.newLine()
-//
-//    textFileBufferedWriter.close()
+    readMe.writeText(content.toString())
 }
